@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-009",
+  "purpose": "留样时间在未来",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-009-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-009",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-009-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-009",
+        "count": 1
+      }
+    }
+  ]
+}

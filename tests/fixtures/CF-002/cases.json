@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-002",
+  "purpose": "留样量 120 克，低于 125 克下限",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-002-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-002",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-002-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-002",
+        "count": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-004",
+  "purpose": "留样人员为空",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-004-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-004",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-004-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-004",
+        "count": 1
+      }
+    }
+  ]
+}

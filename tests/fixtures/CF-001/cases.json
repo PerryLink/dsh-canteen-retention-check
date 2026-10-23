@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-001",
+  "purpose": "留样食品名称为空",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-001-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-001",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-001-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-001",
+        "count": 1
+      }
+    }
+  ]
+}

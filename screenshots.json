@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/assets/dsh-canteen-retention-check-hero.png",
+    "kind": "hero",
+    "alt": "dsh-canteen-retention-check terminal output",
+    "caption": "Real dsh-canteen-retention-check checker output."
+  },
+  {
+    "path": "docs/assets/dsh-canteen-retention-check-demo.gif",
+    "kind": "demo",
+    "alt": "Animated dsh-canteen-retention-check terminal session",
+    "caption": "The same run, assembled line by line."
+  }
+]

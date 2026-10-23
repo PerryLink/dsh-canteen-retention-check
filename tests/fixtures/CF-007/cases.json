@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-007",
+  "purpose": "餐次为空，无法定位所属餐次",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-007-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-007",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-007-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-007",
+        "count": 1
+      }
+    }
+  ]
+}

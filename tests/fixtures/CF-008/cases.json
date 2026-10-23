@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-008",
+  "purpose": "品名残留模板占位符",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-008-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-008",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-008-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-008",
+        "count": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-005",
+  "purpose": "留样时间只写到日，缺时分",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-005-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-005",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-005-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-005",
+        "count": 1
+      }
+    }
+  ]
+}

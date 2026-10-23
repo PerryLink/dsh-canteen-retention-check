@@ -1,0 +1,22 @@
+{
+  "ruleId": "CF-006",
+  "purpose": "留样仅 2 小时即出柜，未满 48 小时",
+  "pairs": [
+    {
+      "name": "boundary-inclusive",
+      "material": "CF-006-compliant.yaml",
+      "expect": {
+        "ruleId": "CF-006",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "CF-006-unsafe.yaml",
+      "expect": {
+        "ruleId": "CF-006",
+        "count": 1
+      }
+    }
+  ]
+}

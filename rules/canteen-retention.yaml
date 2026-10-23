@@ -1,0 +1,263 @@
+# 食堂留样核对 规则库 —— 模板示例（可照抄）
+#
+# ⚠️ 本文件是《新增 72 个规则包的开发规范》§7 的填好示例，不是发布产物。
+#    引文于 2026-10-23 从中国政府网·国务院公报 2019 年第 17 号逐字取回：
+#    https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+#
+# 规则数据与代码分离：替换本文件即可切换规则集版本，无需改动 TypeScript。
+#
+# 条款引用纪律（由 shared/ruleset.ts 强制校验）：
+#   - 每条规则必须写全 document / number / clause / excerpt / kind / source，
+#     且 excerpt 必须是逐字摘录，不得改写。
+#   - kind: direct                       条款直接规定了所检查的要求
+#   - kind: derived-from-principle       条款未直接规定，仅能由原则性条款推论（severity 最多 warn）
+#   - kind: institutional-configuration  阈值出自本机构/本省规定而非国家标准（severity 最多 info）
+#
+# 时效纪律（本规范新增，见 NORM-72-PACKS.md §2）：
+#   - 每条 basis 必须写 effective_from / verified_at / verified_against
+#   - effective_to 为空 = 截至 verified_at 未见废止；非空 = 已知失效日
+#   - 规则包级 as_of = 全部 verified_at 的最小值
+#
+# ⚠️ 本包的能力边界（写进规则，也写进 README）：
+#   本包只核对**留样台账自身的填写与时间自洽**。
+#   不判断留样是否满足检验需要、不判断留样食品是否变质、
+#   不判断台账之外的实际情况（没有记录 ≠ 没有留样，只说明台账无法证明）。
+
+plugin: dsh-canteen-retention-check
+version: "2026.3"
+as_of: "2026-10-23"
+
+rules:
+  # ── 记录四要素：名称 / 量 / 时间 / 人员 ────────────────────────────────
+  - id: CF-001
+    title: 留样记录应载明留样食品名称
+    severity: error
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 中小学、幼儿园食堂应当对每餐次加工制作的每种食品成品进行留样，每个品种留样量应当满足检验需要，不得少于125克，并记录留样食品名称、留样量、留样时间、留样人员等。
+      kind: direct
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: presence
+        field: foodName
+        fix: 补填留样食品名称；本条只核对是否填写，不判断名称是否与实际供餐品种一一对应
+    note: >-
+      依据为第四十条第一款「…并记录留样食品名称、留样量、留样时间、留样人员等」。
+      ⚠️ 适用范围：条文只规定**中小学、幼儿园**食堂；高等院校仅限第二款列举的食品类别，
+      本包不把高校食堂的常规留样纳入 error，缺列时进 skipped。
+      ⚠️ 「等」字表示法定记录项不限于这四项，本包只核对被明列的四项，不据「等」字扩展。
+
+  - id: CF-002
+    title: 单个品种留样量不得少于 125 克
+    severity: error
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 中小学、幼儿园食堂应当对每餐次加工制作的每种食品成品进行留样，每个品种留样量应当满足检验需要，不得少于125克，并记录留样食品名称、留样量、留样时间、留样人员等。
+      kind: direct
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: number
+        field: sampleWeight
+        min: 125
+        # ⚠️ 必须显式写 fix：number 的默认文案是「本条的上下限来自本机构配置」，
+        #    而 125 克是部门规章的强制下限，用默认文案会把国家要求说成本机构配置。
+        fix: 核对留样量是否达到 125 克；本条只比较数值，不判断留样是否满足检验需要
+    note: >-
+      125 克是数字下限，「满足检验需要」是并列的实质要求 —— 后者无法由台账判断，故本包只核对数值。
+      ⚠️ 等号：原文「不得少于」，125 克整不报差异
+      （《民法典》第一千二百五十九条：「以上」「以下」「以内」包括本数）。
+
+  - id: CF-003
+    title: 留样记录应载明留样时间
+    severity: error
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 中小学、幼儿园食堂应当对每餐次加工制作的每种食品成品进行留样，每个品种留样量应当满足检验需要，不得少于125克，并记录留样食品名称、留样量、留样时间、留样人员等。
+      kind: direct
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: presence
+        field: sampledAt
+        fix: 补填留样时间；本条只核对是否填写，不判断所填时间是否与实际留样操作一致
+    note: 留样时间是 CF-006（48 小时）与 CF-009（不晚于核对日）的前置字段；缺此列时三条同进退。
+
+  - id: CF-004
+    title: 留样记录应载明留样人员
+    severity: error
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 中小学、幼儿园食堂应当对每餐次加工制作的每种食品成品进行留样，每个品种留样量应当满足检验需要，不得少于125克，并记录留样食品名称、留样量、留样时间、留样人员等。
+      kind: direct
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: presence
+        field: keeper
+        fix: 补填留样人员；本条只核对是否填写，不判断签字人是否具备相应岗位资格
+    note: >-
+      本包不核对「留样人员是否在岗从业人员」——那需要从业人员名册，属跨材料核对，
+      且第四十条未把该要求写进留样记录项。
+
+  # ── 时间自洽与保存期限 ────────────────────────────────────────────────
+  - id: CF-005
+    title: 留样时间应记录到时分
+    severity: warn
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 并记录留样食品名称、留样量、留样时间、留样人员等。
+      kind: derived-from-principle
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: pattern
+        field: sampledAt
+        pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$'
+        fix: 把留样时间补到时分；本条只核对写法，不判断时刻是否正确
+    note: >-
+      ⚠️ 原文只要求「记录留样时间」，**未规定记录粒度**，故「到时分」是由记录可核对性推得，
+      不是明文，封顶 warn。
+      粒度要求之所以必要：留样 48 小时的起算点若只到日，跨餐次的先后无法判断（CF-006 需要时分）。
+      ⚠️ 本规则只核对写法；写成「2026-03-01 08:30」以外的格式一律报出，由人改。
+
+  - id: CF-006
+    title: 留样食品应在冷藏条件下保存 48 小时以上
+    severity: error
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 留样食品应当由专柜冷藏保存48小时以上。
+      kind: direct
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: dateGap
+        earlierField: sampledAt
+        laterField: removedAt
+        minDays: 2
+        fix: 核对留样时间与出柜时间；本条只按 48 小时的下限比较，不判断冷藏温度是否达标
+    note: >-
+      48 小时 = 2 天，`minDays: 2` 且引擎按分钟差值折算，恰好 48 小时**不报**。
+      ⚠️ 等号：原文「48小时以上」含本数（《民法典》第一千二百五十九条）。
+      ⚠️ 必须显式写 fix：dateGap 的默认文案说「按台账自己写的间隔天数核对」，
+      而本条的 2 天是法定下限，不是台账自述。
+      ⚠️ 本包**不核对冷藏温度**（台账通常无温度记录），也不核对「专柜」——那需要现场照片。
+
+  # ── 台账完整性（推论级） ──────────────────────────────────────────────
+  - id: CF-007
+    title: 每条留样记录应能定位到所属餐次
+    severity: info
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 中小学、幼儿园食堂应当对每餐次加工制作的每种食品成品进行留样
+      kind: derived-from-principle
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: presence
+        field: meal
+        fix: 补填餐次；本条只核对是否填写，不判断该餐次是否确有供餐
+    note: >-
+      ⚠️ 明文要求的是「对每餐次…进行留样」；**记录项清单里没有「餐次」**，
+      「记录应能定位到餐次」是由「每餐次留样」的可核对性推得，故封顶 info。
+      本包不核对「当日应留样的品种数」——那需要菜单，属跨材料核对，台账通常不含。
+
+  - id: CF-008
+    title: 留样记录不应残留模板占位符
+    severity: warn
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 并记录留样食品名称、留样量、留样时间、留样人员等。
+      kind: derived-from-principle
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: containsAny
+        field: foodName
+        terms: [XXX, 待填, 示例, ×××, 填写]
+        fix: 把占位内容换成实际品名；本条只核对字面是否残留模板痕迹
+    note: >-
+      条文要求「记录」，占位符等于未记录 —— 这是推论，不是明文，封顶 warn。
+      terms 里的「填写」二字可能误伤正常品名（如「填写糕」），部署方可从 config 覆盖该列表。
+
+  - id: CF-009
+    title: 留样时间不应晚于核对日
+    severity: warn
+    basis:
+      document: 《学校食品安全与营养健康管理规定》
+      number: 教育部 国家市场监督管理总局 国家卫生健康委员会令第45号
+      clause: 第四十条
+      excerpt: 并记录留样食品名称、留样量、留样时间、留样人员等。
+      kind: derived-from-principle
+      source: https://www.gov.cn/gongbao/content/2019/content_5401344.htm
+      effective_from: "2019-04-01"
+      effective_to: ""
+      superseded_by: ""
+      verified_at: "2026-10-23"
+      verified_against: rules/evidence/clause-verification-school-food-safety.md
+    params:
+      check:
+        kind: noFutureDate
+        field: sampledAt
+    note: >-
+      条文未规定「不得填未来时间」，该判定来自记录须真实这一一般要求，故封顶 warn。
+      无法解析的时间在本条与 CF-005 各报一次，属预期重复：两条核对的是不同属性。
+
+disabled: []

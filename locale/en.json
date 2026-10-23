@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Canteen retention check",
+    "description": "核对食堂留样台账：四要素是否齐全、留样量是否达 125 克、是否冷藏满 48 小时、是否残留模板占位符。"
+  }
+}
