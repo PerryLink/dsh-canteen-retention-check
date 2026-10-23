@@ -29,6 +29,13 @@ export interface Locator {
   row?: number
   /** Column name of a tabular extract. */
   column?: string
+  /**
+   * Logical table the row came from, when a check spans more than one.
+   *
+   * Without it, row 3 of the menu and row 3 of the ledger render the same, and a
+   * reader chasing a finding opens the wrong file.
+   */
+  table?: string
 }
 
 /** One finding. `found` / `expected` / `basis` are all required by design. */
@@ -73,7 +80,7 @@ export interface Report {
 }
 
 /** Locator fields that participate in the stable issue id, in fixed order. */
-const LOCATOR_ID_KEYS: readonly (keyof Locator)[] = ['file', 'page', 'para', 'line', 'row', 'cell', 'column']
+const LOCATOR_ID_KEYS: readonly (keyof Locator)[] = ['file', 'page', 'para', 'line', 'row', 'cell', 'column', 'table']
 
 /** FNV-1a 32-bit hash, rendered as 8 lowercase hex characters. */
 export function hashLocator(locator: Locator): string {

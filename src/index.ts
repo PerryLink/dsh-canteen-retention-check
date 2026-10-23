@@ -134,7 +134,21 @@ export function apply(ctx: Context, config: ConfigShape): () => void {
           onlyRules: only,
           skipNotes: config.skipNotes === '' ? undefined : config.skipNotes,
         })
-        return buildView(report)
+        // CF-010 spans two ledgers. A single-table run cannot execute it, and
+        // silently omitting it would read as "everything ran" — so it is listed.
+        const withCross = report.skipped.some((entry) => entry.rule === 'CF-010')
+          ? report
+          : {
+              ...report,
+              skipped: [
+                ...report.skipped,
+                {
+                  rule: 'CF-010',
+                  reason: '需要菜单与留样两份台账；本次只给了一份，本条未执行',
+                },
+              ],
+            }
+        return buildView(withCross)
       },
     }),
   )

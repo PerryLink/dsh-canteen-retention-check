@@ -30,6 +30,9 @@ dsh --profile <name> --dump-config | grep 'dsh-canteen-retention-check'
 - Is the retention time recorded to the minute, and not in the future?
 - Was the sample kept at least 48 hours before release?
 - Does any cell still hold template text such as `XXX` or `待填`?
+- **Does every dish on the menu have a retained sample?** This is the one rule that
+  needs two ledgers; a single table can check a row's weight, but only a join can
+  find a dish that has no sample row at all.
 
 ## Standards it follows
 
