@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="400" viewBox="0 0 1260 400" role="img" aria-label="dsh-canteen-retention-check data flow">
+<title>dsh-canteen-retention-check data flow</title>
+<rect width="1260" height="400" rx="18" fill="#0d1117"/>
+<text x="60" y="62" fill="#f0f6fc" font-family="ui-sans-serif,system-ui,sans-serif" font-size="30" font-weight="700">dsh-canteen-retention-check</text>
+<text x="60" y="94" fill="#8b949e" font-family="ui-monospace,monospace" font-size="16">retention-ledger check · read-only on the material</text>
+<line x1="60" y1="116" x2="1200" y2="116" stroke="#30363d"/>
+<rect x="50" y="150" width="190" height="96" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="145" y="190" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">ledger rows[]</text>
+<text x="145" y="218" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">JSON / YAML</text>
+<path d="M246 198h28" stroke="#8b949e" stroke-width="3"/>
+<path d="M272 191l10 7-10 7" fill="none" stroke="#8b949e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="280" y="150" width="240" height="96" rx="14" fill="#161b22" stroke="#4B67B4" stroke-width="2"/>
+<text x="400" y="190" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13" font-weight="700">canteen_retention_check</text>
+<text x="400" y="218" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">tool · read-only</text>
+<path d="M526 198h28" stroke="#8b949e" stroke-width="3"/>
+<path d="M552 191l10 7-10 7" fill="none" stroke="#8b949e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="560" y="150" width="190" height="96" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="655" y="190" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">rules/*.yaml</text>
+<text x="655" y="218" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">CF-001 .. CF-010</text>
+<path d="M756 198h28" stroke="#8b949e" stroke-width="3"/>
+<path d="M782 191l10 7-10 7" fill="none" stroke="#8b949e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="790" y="150" width="190" height="96" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="885" y="190" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">report</text>
+<text x="885" y="218" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">issues[] + skipped[]</text>
+<path d="M986 198h28" stroke="#8b949e" stroke-width="3"/>
+<path d="M1012 191l10 7-10 7" fill="none" stroke="#8b949e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1020" y="150" width="190" height="96" rx="14" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+<text x="1115" y="190" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">reviewer</text>
+<text x="1115" y="218" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">verdict stays human</text>
+<path d="M400 246v39" stroke="#4B67B4" stroke-width="2" stroke-dasharray="5 5"/>
+<path d="M655 246v39" stroke="#4B67B4" stroke-width="2" stroke-dasharray="5 5"/>
+<rect x="280" y="285" width="620" height="52" rx="12" fill="#161b22" stroke="#4B67B4" stroke-width="2"/>
+<text x="590" y="318" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="13">config · rulesFile · disabledRules · onlyRules · skipNotes · timeoutMs</text>
+<text x="60" y="352" fill="#8b949e" font-family="ui-monospace,monospace" font-size="12.5">excerpt = verbatim quote · derived-from-principle &lt;= warn · institutional-configuration &lt;= info</text>
+<text x="60" y="380" fill="#8b949e" font-family="ui-monospace,monospace" font-size="12.5">CF-010 cross-ledger: menu + samples · a single-table run reports skipped[]</text>
+</svg>
