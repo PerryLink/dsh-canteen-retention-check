@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="flowTitle flowDesc"><title id="flowTitle">dsh-canteen-retention-check structure: two moments, 48-hour window, cross-table bypass</title><desc id="flowDesc">The retention ledger is parsed into canonical fields; eight rules check the sampling moment and CF-006 checks the 48-hour release floor; CF-010 needs a second ledger and lands in skipped[] when only one is supplied; findings merge into issues[] and skipped[].</desc><defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#131a2a"/><stop offset="1" stop-color="#0c1016"/></linearGradient><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000000" flood-opacity="0.42"/></filter></defs><rect width="1100" height="660" rx="20" fill="url(#bg)"/>
+<text x="44" y="44" fill="#8496f5" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.4">STRUCTURE · MATERIAL → CHECKS → REPORT</text>
+<text x="44" y="78" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="24" font-weight="700" text-anchor="start">One ledger row, two moments, ten rules</text>
+<text x="44" y="102" fill="#b2bdd6" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="12" font-weight="400" text-anchor="start">Sampling checks four elements, 125 g, minute precision, template leftovers and future dates; release checks the 48-hour floor.</text>
+<text x="44" y="122" fill="#929eba" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="12" font-weight="400" text-anchor="start">A missing column skips the whole rule — never a per-row report. CF-010 is the only cross-table rule.</text>
+<text x="1056" y="44" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="end">rules/canteen-retention.yaml · 2026.3</text>
+<line x1="44" y1="136" x2="1056" y2="136" stroke="#2b3652" stroke-width="1"/>
+<rect x="40" y="148" width="228" height="282" rx="18" fill="#171f30" stroke="#2b3652" stroke-width="1.1" filter="url(#soft)"/>
+<text x="56" y="172" fill="#8496f5" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.2">MATERIAL</text>
+<text x="56" y="198" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="14" font-weight="700" text-anchor="start">Retention ledger</text>
+<text x="56" y="220" fill="#b2bdd6" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">rows[] · JSON / YAML</text>
+<text x="56" y="238" fill="#929eba" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">read-only · never rewritten</text>
+<line x1="56" y1="250" x2="252" y2="250" stroke="#232d44" stroke-width="1"/>
+<text x="56" y="272" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">meal</text>
+<text x="140" y="272" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">lunch</text>
+<text x="56" y="296" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">foodName</text>
+<text x="140" y="296" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">braised pork</text>
+<text x="56" y="320" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">sampleWeight</text>
+<text x="140" y="320" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">125 g</text>
+<text x="56" y="344" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">sampledAt</text>
+<text x="140" y="344" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">03-04 11:40</text>
+<text x="56" y="368" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">removedAt</text>
+<text x="140" y="368" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">03-06 11:40</text>
+<text x="56" y="392" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">keeper</text>
+<text x="140" y="392" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">Zhang</text>
+<text x="56" y="416" fill="#707c98" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">aliases folded · case / space</text>
+<rect x="40" y="446" width="228" height="142" rx="18" fill="#131a29" stroke="#2b3652" stroke-width="1.1"/>
+<text x="56" y="470" fill="#8496f5" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.2">RULE PACK</text>
+<text x="56" y="496" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">rules/*.yaml</text>
+<text x="56" y="518" fill="#b2bdd6" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">version 2026.3</text>
+<text x="56" y="538" fill="#b2bdd6" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">9 table + 1 cross-table</text>
+<text x="56" y="558" fill="#929eba" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">replace the YAML, not the TS</text>
+<text x="56" y="578" fill="#707c98" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">validated on load</text>
+<rect x="296" y="148" width="304" height="204" rx="18" fill="#171f30" stroke="#2b3652" stroke-width="1.1" filter="url(#soft)"/>
+<text x="312" y="172" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="700" text-anchor="start">① SAMPLING · t = 0</text>
+<text x="588" y="172" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="end">8 rules</text>
+<line x1="312" y1="182" x2="584" y2="182" stroke="#232d44" stroke-width="1"/>
+<rect x="308" y="190" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="314" y="199" width="3" height="16" rx="1.5" fill="#f08a5d"/>
+<text x="323" y="205" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-001</text>
+<text x="323" y="218" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">foodName · error</text>
+<circle cx="436" cy="207" r="2.6" fill="#f08a5d"/>
+<rect x="458" y="190" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="464" y="199" width="3" height="16" rx="1.5" fill="#f08a5d"/>
+<text x="473" y="205" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-002</text>
+<text x="473" y="218" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">≥ 125 g · error</text>
+<circle cx="586" cy="207" r="2.6" fill="#f08a5d"/>
+<rect x="308" y="230" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="314" y="239" width="3" height="16" rx="1.5" fill="#f08a5d"/>
+<text x="323" y="245" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-003</text>
+<text x="323" y="258" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">sampledAt · error</text>
+<circle cx="436" cy="247" r="2.6" fill="#f08a5d"/>
+<rect x="458" y="230" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="464" y="239" width="3" height="16" rx="1.5" fill="#f08a5d"/>
+<text x="473" y="245" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-004</text>
+<text x="473" y="258" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">keeper · error</text>
+<circle cx="586" cy="247" r="2.6" fill="#f08a5d"/>
+<rect x="308" y="270" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="314" y="279" width="3" height="16" rx="1.5" fill="#e2b34a"/>
+<text x="323" y="285" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-005</text>
+<text x="323" y="298" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">minute fmt · warn</text>
+<circle cx="436" cy="287" r="2.6" fill="#e2b34a"/>
+<rect x="458" y="270" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="464" y="279" width="3" height="16" rx="1.5" fill="#7aa2f7"/>
+<text x="473" y="285" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-007</text>
+<text x="473" y="298" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">meal · info</text>
+<circle cx="586" cy="287" r="2.6" fill="#7aa2f7"/>
+<rect x="308" y="310" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="314" y="319" width="3" height="16" rx="1.5" fill="#e2b34a"/>
+<text x="323" y="325" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-008</text>
+<text x="323" y="338" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">placeholder · warn</text>
+<circle cx="436" cy="327" r="2.6" fill="#e2b34a"/>
+<rect x="458" y="310" width="138" height="34" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="464" y="319" width="3" height="16" rx="1.5" fill="#e2b34a"/>
+<text x="473" y="325" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-009</text>
+<text x="473" y="338" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">not future · warn</text>
+<circle cx="586" cy="327" r="2.6" fill="#e2b34a"/>
+<rect x="620" y="148" width="240" height="152" rx="18" fill="#131a29" stroke="#8496f5" stroke-width="1.3" stroke-dasharray="5 5"/>
+<text x="636" y="172" fill="#8496f5" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.1">CF-010 · CROSS-TABLE</text>
+<rect x="636" y="186" width="30" height="22" rx="4" fill="#171f30" stroke="#8496f5" stroke-width="1.1"/>
+<rect x="646" y="194" width="30" height="22" rx="4" fill="#171f30" stroke="#8496f5" stroke-width="1.1"/>
+<text x="688" y="196" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="14" font-weight="700" text-anchor="start">menu + samples</text>
+<text x="688" y="216" fill="#b2bdd6" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">join on date / meal / dish</text>
+<text x="688" y="238" fill="#f08a5d" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">one ledger → skipped[]</text>
+<text x="688" y="258" fill="#929eba" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">never silently passed</text>
+<text x="636" y="286" fill="#707c98" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">the other nine rules read one table</text>
+<rect x="296" y="368" width="564" height="80" rx="16" fill="#171f30" stroke="#2b3652" stroke-width="1.1" filter="url(#soft)"/>
+<text x="312" y="390" fill="#8496f5" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.2">48 h RETENTION WINDOW</text>
+<text x="844" y="390" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="end">2880 min · exactly 48 h → no issue</text>
+<line x1="316" y1="416" x2="844" y2="416" stroke="#2b3652" stroke-width="1.6"/>
+<rect x="316" y="404" width="528" height="8" rx="4" fill="#398470"/>
+<line x1="316.0" y1="412" x2="316.0" y2="420" stroke="#929eba" stroke-width="1.2"/>
+<text x="316.0" y="434" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">0 h</text>
+<line x1="448.0" y1="412" x2="448.0" y2="420" stroke="#929eba" stroke-width="1.2"/>
+<text x="448.0" y="434" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="middle">12</text>
+<line x1="580.0" y1="412" x2="580.0" y2="420" stroke="#929eba" stroke-width="1.2"/>
+<text x="580.0" y="434" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="middle">24</text>
+<line x1="712.0" y1="412" x2="712.0" y2="420" stroke="#929eba" stroke-width="1.2"/>
+<text x="712.0" y="434" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="middle">36</text>
+<line x1="844.0" y1="412" x2="844.0" y2="420" stroke="#929eba" stroke-width="1.2"/>
+<text x="844.0" y="434" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="end">48 h</text>
+<rect x="620" y="464" width="240" height="124" rx="18" fill="#171f30" stroke="#2b3652" stroke-width="1.1" filter="url(#soft)"/>
+<text x="636" y="486" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="700" text-anchor="start">② RELEASE · removedAt</text>
+<text x="844" y="486" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="end">1 rule</text>
+<line x1="636" y1="494" x2="844" y2="494" stroke="#232d44" stroke-width="1"/>
+<rect x="636" y="502" width="208" height="36" rx="11" fill="#131a29" stroke="#2b3652" stroke-width="1"/>
+<rect x="642" y="510" width="3" height="20" rx="1.5" fill="#f08a5d"/>
+<text x="651" y="517" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-006 · 48 h floor</text>
+<text x="651" y="531" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">dateGap ≥ 2 days · error</text>
+<rect x="636" y="548" width="13" height="8" rx="3" fill="#f08a5d"/>
+<text x="656" y="560" fill="#f08a5d" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">11:40 → 13:40 = 2 h &lt; 48 h</text>
+<text x="636" y="580" fill="#707c98" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">wall-clock only · no temperature</text>
+<rect x="296" y="464" width="304" height="124" rx="18" fill="#131a29" stroke="#2b3652" stroke-width="1.1"/>
+<text x="312" y="486" fill="#8496f5" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.1">SEVERITY FOLLOWS EVIDENCE</text>
+<text x="312" y="512" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="400" text-anchor="start">direct → error</text>
+<text x="312" y="534" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="400" text-anchor="start">derived-from-principle → ≤ warn</text>
+<text x="312" y="556" fill="#eef2ff" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13" font-weight="400" text-anchor="start">institutional-configuration → ≤ info</text>
+<text x="312" y="578" fill="#929eba" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">empty issues[] ≠ clean — see skipped[]</text>
+<rect x="880" y="148" width="180" height="452" rx="18" fill="#171f30" stroke="#2b3652" stroke-width="1.1" filter="url(#soft)"/>
+<text x="896" y="172" fill="#8496f5" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="700" text-anchor="start" letter-spacing="1.2">REPORT</text>
+<text x="896" y="198" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="15" font-weight="700" text-anchor="start">issues[]</text>
+<text x="896" y="218" fill="#b2bdd6" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">+ skipped[]</text>
+<text x="896" y="242" fill="#b2bdd6" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">3 error · 1 warn</text>
+<text x="896" y="260" fill="#b2bdd6" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">skipped 1 · fixtures</text>
+<line x1="896" y1="272" x2="1044" y2="272" stroke="#232d44" stroke-width="1"/>
+<circle cx="900" cy="292" r="2.4" fill="#f08a5d"/>
+<text x="910" y="296" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">CF-001 · row 1</text>
+<text x="910" y="309" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">food name empty</text>
+<circle cx="900" cy="332" r="2.4" fill="#f08a5d"/>
+<text x="910" y="336" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">CF-002 · row 1</text>
+<text x="910" y="349" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">120 g &lt; 125 g</text>
+<circle cx="900" cy="372" r="2.4" fill="#e2b34a"/>
+<text x="910" y="376" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">CF-008 · row 1</text>
+<text x="910" y="389" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">template text left</text>
+<circle cx="900" cy="412" r="2.4" fill="#f08a5d"/>
+<text x="910" y="416" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="400" text-anchor="start">CF-006 · row 1</text>
+<text x="910" y="429" fill="#929eba" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="11" font-weight="400" text-anchor="start">2 h &lt; 48 h</text>
+<line x1="896" y1="452" x2="1044" y2="452" stroke="#232d44" stroke-width="1"/>
+<text x="896" y="474" fill="#eef2ff" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="12" font-weight="700" text-anchor="start">skipped[]</text>
+<rect x="892" y="484" width="156" height="58" rx="10" fill="#242533" stroke="#f08a5d" stroke-width="1.1" stroke-dasharray="5 5"/>
+<text x="900" y="502" fill="#f08a5d" font-family="Consolas,'Cascadia Mono','SFMono-Regular',ui-monospace,monospace" font-size="13" font-weight="700" text-anchor="start">CF-010</text>
+<text x="900" y="518" fill="#b2bdd6" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">needs menu + samples</text>
+<text x="900" y="532" fill="#929eba" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">single ledger → listed</text>
+<line x1="896" y1="556" x2="1044" y2="556" stroke="#232d44" stroke-width="1"/>
+<text x="896" y="576" fill="#b2bdd6" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">lists differences only</text>
+<text x="896" y="592" fill="#707c98" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11" font-weight="400" text-anchor="start">verdict stays human</text>
+<path d="M268 220L288.0 220.0" stroke="#8496f5" stroke-width="2.0" fill="none" stroke-linecap="round"/>
+<path d="M296 220L283.2 225.0L283.2 215.0Z" fill="#8496f5"/>
+<path d="M448 352L448.0 360.0" stroke="#8496f5" stroke-width="2.0" fill="none" stroke-linecap="round"/>
+<path d="M448 368L443.0 355.2L453.0 355.2Z" fill="#8496f5"/>
+<path d="M844 448L844.0 456.0" stroke="#8496f5" stroke-width="2.0" fill="none" stroke-linecap="round"/>
+<path d="M844 464L839.0 451.2L849.0 451.2Z" fill="#8496f5"/>
+<path d="M860 224L872.0 224.0" stroke="#8496f5" stroke-width="2.0" fill="none" stroke-dasharray="6 5" stroke-linecap="round"/>
+<path d="M880 224L867.2 229.0L867.2 219.0Z" fill="#8496f5"/>
+<path d="M860 522H868V408" stroke="#8496f5" stroke-width="2.0" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M868 408L872.0 408.0" stroke="#8496f5" stroke-width="2.0" fill="none" stroke-linecap="round"/>
+<path d="M880 408L867.2 413.0L867.2 403.0Z" fill="#8496f5"/>
+<text x="44" y="628" fill="#929eba" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11.5" font-weight="400" text-anchor="start">An empty issues[] never means clean — every check that could not run is listed in skipped[] with its reason.</text>
+<text x="1056" y="628" fill="#707c98" font-family="'Microsoft YaHei','PingFang SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="11.5" font-weight="400" text-anchor="end">wording guard · disclaimer attached</text>
+</svg>

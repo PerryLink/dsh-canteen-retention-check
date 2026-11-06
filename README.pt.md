@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-dark.svg">
-  <img src="docs/assets/dsh-canteen-retention-check-flow-light.svg" width="100%" alt="Fluxo de dados do dsh-canteen-retention-check: linhas do registo rows[] → ferramenta canteen_retention_check → pacote rules/*.yaml (CF-001..CF-010) → relatório issues[] + skipped[] → revisão humana">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-canteen-retention-check-hero-en-light.webp" width="100%" alt="Imagem do dsh-canteen-retention-check: a janela de retenção de 48 horas com cinco linhas reais das fixtures — sem diferenças, CF-001 nome vazio, CF-002 120 g abaixo do mínimo de 125 g, CF-008 texto de modelo e CF-006 saída às 2 horas; a faixa inferior marca CF-010 como skipped ao correr com um só registo">
 </picture>
 
 # dsh-canteen-retention-check
@@ -44,6 +44,11 @@ Regras e código estão separados: 9 regras de uma tabela mais 1 regra de duas t
 - **Para quem**: responsáveis de refeitório e responsáveis de segurança alimentar; não é preciso saber usar a linha de comandos, basta entregar o material no chat.
 - **O que entrega**: o material de origem sobre o qual a verificação trabalha (uma tabela, um registo ou um documento); o original nunca é modificado. O Excel pode ser convertido primeiro para JSON/YAML, no chat se a plataforma o permitir.
 - **O que recebe**: uma lista de que linha, que coluna, o que falta e como corrigir; cada verificação que não pôde ser executada aparece em `skipped` com o motivo.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-canteen-retention-check-flow-v5-light.svg" width="100%" alt="Diagrama de estrutura: o registo alimenta oito regras do momento da colheita (quatro elementos, mínimo de 125 g, minuto, marcadores, datas futuras), a janela de 48 horas leva a CF-006 na saída, e CF-010 é a única regra de duas tabelas: precisa do menu e das amostras e fica em skipped[] com um só registo; os achados juntam-se em issues[] e a severidade é limitada pelo tipo de evidência">
+</picture>
 
 ## Instalação em três passos
 
@@ -367,7 +372,7 @@ node samples/quickstart/run.mjs
 #    skipped: 1
 ```
 
-A entrada da amostra está em `samples/quickstart/input/`, o resumo esperado em `samples/quickstart/expected/result.json` e a captura em `docs/assets/quickstart.png`. As imagens do README são geradas programaticamente por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) e podem ser executadas de novo; o diagrama de fluxo de uma só pele e os recursos de demonstração antigos ficam em `docs/assets/` para ligações externas, enquanto os README referenciam apenas o novo par claro/escuro.
+A entrada da amostra está em `samples/quickstart/input/`, o resumo esperado em `samples/quickstart/expected/result.json` e a captura em `docs/assets/quickstart.png`. As imagens do README são geradas programaticamente por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (o hero é desenhado com Pillow e o diagrama de estrutura é SVG escrito à mão; ambos em variante clara e escura) e podem ser executadas de novo; o diagrama de fluxo de uma só pele e os recursos de demonstração antigos ficam em `docs/assets/` para ligações externas.
 
 Topics: `deepseek-harness`, `dsh`, `dsh-plugin`, `cordis`, `canteen`, `retention`, `food`
 

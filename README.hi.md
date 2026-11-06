@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-dark.svg">
-  <img src="docs/assets/dsh-canteen-retention-check-flow-light.svg" width="100%" alt="dsh-canteen-retention-check डेटा प्रवाह: लेजर rows[] → canteen_retention_check टूल → rules/*.yaml पैक (CF-001..CF-010) → issues[] + skipped[] रिपोर्ट → मानव समीक्षक">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-canteen-retention-check-hero-en-light.webp" width="100%" alt="dsh-canteen-retention-check चित्र: 48 घंटे की नमूना-अवधि और पाँच वास्तविक फ़िक्स्चर पंक्तियाँ — कोई अंतर नहीं, CF-001 खाली व्यंजन नाम, CF-002 120 ग्राम 125 ग्राम से कम, CF-008 टेम्पलेट पाठ, और CF-006 केवल 2 घंटे में निकासी; नीचे की पट्टी बताती है कि एक ही रजिस्टर पर CF-010 skipped[] में जाता है">
 </picture>
 
 # dsh-canteen-retention-check
@@ -44,6 +44,11 @@ dsh plugin --profile <name> add dsh-canteen-retention-check
 - **किसके लिए**: कैंटीन प्रबंधक और खाद्य-सुरक्षा अधिकारी; कमांड लाइन जानने की ज़रूरत नहीं, सामग्री चैट में सौंप दें।
 - **आप क्या देते हैं**: वह मूल सामग्री जिस पर यह जाँच चलती है (तालिका, रजिस्टर या दस्तावेज़); मूल कभी नहीं बदला जाता। Excel को पहले JSON/YAML में बदला जा सकता है, प्लेटफ़ॉर्म समर्थन दे तो चैट में भी।
 - **यह क्या देता है**: «कौन-सी पंक्ति, कौन-सा स्तंभ, क्या कम है, कैसे सुधारें» की सूची; हर जाँच जो नहीं चल सकी, `skipped` में कारण के साथ दर्ज होती है।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-canteen-retention-check-flow-v5-light.svg" width="100%" alt="संरचना आरेख: रजिस्टर नमूना-समय की आठ नियमों में जाता है (चार तत्व, 125 ग्राम सीमा, मिनट, प्लेसहोल्डर, भविष्य तिथियाँ), 48 घंटे की अवधि निकासी पर CF-006 तक ले जाती है, और CF-010 एकमात्र दो-तालिका नियम है: उसे मेन्यू और नमूने दोनों चाहिए और एक ही रजिस्टर पर skipped[] में जाता है; निष्कर्ष issues[] में मिलते हैं और गंभीरता साक्ष्य के प्रकार से सीमित रहती है">
+</picture>
 
 ## तीन चरणों में शुरुआत
 
@@ -367,7 +372,7 @@ node samples/quickstart/run.mjs
 #    skipped: 1
 ```
 
-नमूना इनपुट `samples/quickstart/input/` में, अपेक्षित सारांश `samples/quickstart/expected/result.json` में और स्क्रीनशॉट `docs/assets/quickstart.png` में है। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) से क्रमादेशित रूप से बनती हैं और दोबारा चलाई जा सकती हैं; पुराना एक-रूप फ़्लो डायग्राम और डेमो संपत्तियाँ बाहरी लिंक के लिए `docs/assets/` में रहती हैं, जबकि README केवल नए हल्के/गहरे जोड़े का संदर्भ देते हैं।
+नमूना इनपुट `samples/quickstart/input/` में, अपेक्षित सारांश `samples/quickstart/expected/result.json` में और स्क्रीनशॉट `docs/assets/quickstart.png` में है। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) से क्रमादेशित रूप से बनती हैं (hero Pillow से बनता है और संरचना आरेख हस्तलिखित SVG है; दोनों हल्के और गहरे variant में) और दोबारा चलाई जा सकती हैं; पुराना एक-रूप फ़्लो डायग्राम और डेमो संपत्तियाँ बाहरी लिंक के लिए `docs/assets/` में रहती हैं।
 
 Topics: `deepseek-harness`, `dsh`, `dsh-plugin`, `cordis`, `canteen`, `retention`, `food`
 

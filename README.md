@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-dark.svg">
-  <img src="docs/assets/dsh-canteen-retention-check-flow-light.svg" width="100%" alt="dsh-canteen-retention-check 数据流：留样台账 rows[] → canteen_retention_check 工具 → rules/*.yaml 规则包（CF-001..CF-010）→ issues[] + skipped[] 报告 → 审核人裁决">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-canteen-retention-check-hero-zh-light.webp" width="100%" alt="dsh-canteen-retention-check 配图：左侧是标题与规则包版本，右侧是 48 小时留样窗口——五行真实样例行分别给出无差异、CF-001 品名空、CF-002 120 克低于 125 克下限、CF-008 残留占位符、CF-006 仅 2 小时即出柜的判定；底部标明 CF-010 跨表规则在单表运行时进入 skipped[]">
 </picture>
 
 # dsh-canteen-retention-check
@@ -44,6 +44,11 @@ dsh plugin --profile <name> add dsh-canteen-retention-check
 - **给谁用**：食堂管理员、食品安全员；不用懂命令行，在对话里把材料交给它即可。
 - **你交什么**：这项核对用到的原始材料（表格、清单或文书）；不改原件。Excel 可先转成 JSON/YAML，对话里也能代转。
 - **它交什么**：一份「哪一行、哪一栏、差什么、怎么补」的清单；没能执行的检查逐条列入 `skipped` 并写明原因。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-canteen-retention-check-flow-v5-light.svg" width="100%" alt="结构图：留样台账进入留样时刻的 8 条规则（四要素、125 克下限、时分写法、占位符、未来时间），48 小时窗口接到出柜时刻的 CF-006；CF-010 是唯一需要菜单与留样两份台账的跨表规则，单表运行时进入 skipped[]；发现汇入 issues[]，严重级按证据类别封顶">
+</picture>
 
 ## 三步上手
 
@@ -364,7 +369,7 @@ node samples/quickstart/run.mjs
 #    skipped: 1
 ```
 
-样例输入在 `samples/quickstart/input/`，期望输出在 `samples/quickstart/expected/result.json`，截图见 `docs/assets/quickstart.png`。README 配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow），可重复执行；旧的单版流程图与演示图保留在 `docs/assets/` 供外链使用，README 只引用新生成的深浅双版。
+样例输入在 `samples/quickstart/input/`，期望输出在 `samples/quickstart/expected/result.json`，截图见 `docs/assets/quickstart.png`。README 配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（hero 用 Pillow 绘制、结构图为手写 SVG，均为深浅双版），可重复执行；旧的单版流程图与演示图保留在 `docs/assets/` 供外链使用。
 
 Topics：`deepseek-harness`, `dsh`, `dsh-plugin`, `cordis`, `canteen`, `retention`, `food`
 

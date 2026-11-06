@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-dark.svg">
-  <img src="docs/assets/dsh-canteen-retention-check-flow-light.svg" width="100%" alt="dsh-canteen-retention-check data flow: ledger rows[] → canteen_retention_check tool → rules/*.yaml pack (CF-001..CF-010) → issues[] + skipped[] report → human reviewer">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-canteen-retention-check-hero-en-light.webp" width="100%" alt="dsh-canteen-retention-check hero: the 48-hour retention window with five real fixture rows — clean, CF-001 empty dish name, CF-002 120 g under the 125 g floor, CF-008 leftover template text, and CF-006 released after only 2 hours; the bottom strip marks CF-010 as skipped on a single-ledger run">
 </picture>
 
 # dsh-canteen-retention-check
@@ -44,6 +44,11 @@ Rules and code are separate: 9 single-table rules plus 1 cross-table rule (CF-01
 - **Who it is for**: canteen managers and food-safety officers; no command line required, hand the material over in chat.
 - **What you give it**: the source material the check works on (a table, register or document); the original is never modified. Excel can be converted to JSON/YAML first, in chat if the platform supports it.
 - **What it gives back**: a line-by-line list of what row, what column, what is missing, and how to fix it; every check that could not run is listed in `skipped` with its reason.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-canteen-retention-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-canteen-retention-check-flow-v5-light.svg" width="100%" alt="Structure diagram: the ledger feeds eight sampling-moment rules (four elements, the 125 g floor, minute precision, placeholders, future dates), the 48-hour window leads to CF-006 at release, and CF-010 is the one cross-table rule that needs a menu as well as the samples and lands in skipped[] on a single-ledger run; findings merge into issues[], severity capped by the evidence kind">
+</picture>
 
 ## Three-step setup
 
@@ -372,7 +377,7 @@ node samples/quickstart/run.mjs
 #    skipped: 1
 ```
 
-The sample input is in `samples/quickstart/input/`, the expected summary in `samples/quickstart/expected/result.json`, the screenshot in `docs/assets/quickstart.png`. The README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) and are safe to re-run; the older single-skin flow diagram and demo assets stay in `docs/assets/` for external deep links, while the READMEs reference only the new light/dark pair.
+The sample input is in `samples/quickstart/input/`, the expected summary in `samples/quickstart/expected/result.json`, the screenshot in `docs/assets/quickstart.png`. The README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (the hero is drawn with Pillow, the structure diagram is hand-written SVG; both in light and dark) and are safe to re-run; the older single-skin flow diagram and demo assets stay in `docs/assets/` for external deep links.
 
 Topics: `deepseek-harness`, `dsh`, `dsh-plugin`, `cordis`, `canteen`, `retention`, `food`
 
