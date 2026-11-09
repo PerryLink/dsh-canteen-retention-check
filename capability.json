@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "tier": "L1-lite",
+  "input_formats": [
+    "json",
+    "yaml"
+  ],
+  "outputs": [
+    "markdown",
+    "json"
+  ],
+  "rules": {
+    "total": 10
+  },
+  "limits": [
+    "窄规则检查，不做定性/合规结论",
+    "只读结构化 JSON/YAML",
+    "无真实语料/P/R；benchmark 未测"
+  ]
+}
