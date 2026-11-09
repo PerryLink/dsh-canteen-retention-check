@@ -66,6 +66,20 @@ export interface Skipped {
   reason: string
 }
 
+/** How many declared rules ran, skipped or were left manual. */
+export interface Execution {
+  /** Rules declared by the pack. */
+  total: number
+  /** Rules whose check ran to completion (with or without findings). */
+  executed: number
+  /** Rules that did not run (disabled, unselected, or missing material). */
+  skipped: number
+  /** Rules declared as human-only; not attempted by the engine. */
+  manual: number
+  /** Rules whose `check.kind` has no engine implementation. */
+  unsupported: number
+}
+
 /** The canonical value every checker tool returns. */
 export interface Report {
   plugin: string
@@ -77,6 +91,8 @@ export interface Report {
   /** Always present. Empty means every declared rule ran. */
   skipped: Skipped[]
   issues: Issue[]
+  /** Execution accounting, when the caller provides it. */
+  execution?: Execution
 }
 
 /** Locator fields that participate in the stable issue id, in fixed order. */
@@ -117,6 +133,7 @@ export interface MakeReportInput {
   checkedAt: string
   issues: readonly Issue[]
   skipped: readonly Skipped[]
+  execution?: Execution
 }
 
 /** Assemble a Report with a derived summary and a deterministic issue order. */
@@ -135,6 +152,7 @@ export function makeReport(input: MakeReportInput): Report {
     rulesetVersion: input.rulesetVersion,
     skipped: [...input.skipped],
     issues,
+    ...(input.execution === undefined ? {} : { execution: input.execution }),
   }
 }
 
