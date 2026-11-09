@@ -1,6 +1,6 @@
 # dsh-canteen-retention-check — Canteen retention check
 
-[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+[English](README.md) · [简体中文](README-zh.md)
 
 <!-- topblock:v1 -->
 > **What it is** — Checks a canteen retention ledger for the four required elements, sample weight, refrigeration time and leftover placeholders.
