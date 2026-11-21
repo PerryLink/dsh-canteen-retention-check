@@ -50,6 +50,11 @@ dsh plugin --profile <name> add dsh-canteen-retention-check
   <img src="docs/assets/dsh-canteen-retention-check-flow-v5-light.svg" width="100%" alt="संरचना आरेख: रजिस्टर नमूना-समय की आठ नियमों में जाता है (चार तत्व, 125 ग्राम सीमा, मिनट, प्लेसहोल्डर, भविष्य तिथियाँ), 48 घंटे की अवधि निकासी पर CF-006 तक ले जाती है, और CF-010 एकमात्र दो-तालिका नियम है: उसे मेन्यू और नमूने दोनों चाहिए और एक ही रजिस्टर पर skipped[] में जाता है; निष्कर्ष issues[] में मिलते हैं और गंभीरता साक्ष्य के प्रकार से सीमित रहती है">
 </picture>
 
+![dsh-canteen-retention-check का असली टर्मिनल रन](docs/assets/dsh-canteen-retention-check-demo.gif)
+
+*इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
+
+
 ## तीन चरणों में शुरुआत
 
 1. **इंस्टॉल करें** (कोई एक चैनल चुनें):

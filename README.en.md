@@ -148,6 +148,10 @@ The result carries `plugin`, `target`, `checkedAt`, `rulesetVersion`, `summary`,
 
 ### Examples
 
+![dsh-canteen-retention-check: real terminal run](docs/assets/dsh-canteen-retention-check-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
 These are the plugin's real entry points; install once, then call one. The sample uses the bundled material:
 
 ```yaml

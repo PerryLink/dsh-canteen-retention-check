@@ -50,6 +50,11 @@ Regras e código estão separados: 9 regras de uma tabela mais 1 regra de duas t
   <img src="docs/assets/dsh-canteen-retention-check-flow-v5-light.svg" width="100%" alt="Diagrama de estrutura: o registo alimenta oito regras do momento da colheita (quatro elementos, mínimo de 125 g, minuto, marcadores, datas futuras), a janela de 48 horas leva a CF-006 na saída, e CF-010 é a única regra de duas tabelas: precisa do menu e das amostras e fica em skipped[] com um só registo; os achados juntam-se em issues[] e a severidade é limitada pelo tipo de evidência">
 </picture>
 
+![dsh-canteen-retention-check: execução real de terminal](docs/assets/dsh-canteen-retention-check-demo.gif)
+
+*Repetição animada de uma execução real registrada neste repositório.*
+
+
 ## Instalação em três passos
 
 1. **Instalar** (escolha um canal):

@@ -35,6 +35,10 @@ dsh plugin --profile <name> add dsh-canteen-retention-check
 
 ## 它是什么
 
+![dsh-canteen-retention-check 真实终端运行](docs/assets/dsh-canteen-retention-check-demo.gif)
+
+*本仓库一次真实运行的动图回放。*
+
 `dsh-canteen-retention-check` 读取一份食堂留样台账——表头加每行一条留样记录——核对台账自身的齐备与时间自洽：品名、留样量、留样时间、留样人员四要素是否填写，留样量是否达到 125 克，留样时间是否记到时分且不在未来，出柜是否距留样满 48 小时，单元格里是否还残留 `XXX`、`待填` 这类模板文字。
 
 它核对的是台账，不是厨房。缺一行说明台账无法证明留过样，不说明没有留样；空白格报的是「台账没有记录」，不是「没有发生过」——这两句话不同，只有前一句是文件能支撑的。
