@@ -11,6 +11,8 @@
 
 面向 DeepSeek Harness 的数据型核查插件：读入一份留样台账（每行一条留样记录），按随包的版本化规则包（CF-001..CF-010）逐条核对；只读材料、不改原件，无网络请求、不调用模型。
 
+最近一次核验：DeepSeek Harness `dsh-v0.2.3-alpha.1`（2026-11-22）。
+
 [安装](#三步上手) · [配置](#配置) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)

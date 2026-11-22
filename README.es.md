@@ -11,6 +11,8 @@
 
 Un verificador de datos para DeepSeek Harness: lee un registro de retención de muestras de comedor (una fila por muestra), aplica el paquete de reglas versionado incluido (CF-001..CF-010) y nunca escribe en el material: sin red y sin llamadas al modelo.
 
+Última verificación: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalar](#instalación-en-tres-pasos) · [Configuración](#configuración) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -53,7 +55,6 @@ Reglas y código están separados: 9 reglas de una tabla más 1 regla de dos tab
 ![dsh-canteen-retention-check: ejecución real de terminal](docs/assets/dsh-canteen-retention-check-demo.gif)
 
 *Repetición animada de una ejecución real registrada en este repositorio.*
-
 
 ## Instalación en tres pasos
 
