@@ -7,6 +7,8 @@
 
 # dsh-canteen-retention-check
 
+Current version `0.2.5`.
+
 **Check every retained-sample row against the four required elements, the 125-gram floor, the 48-hour window, and leftover template placeholders — report only what the ledger can prove, leave the verdict to the reviewer.**
 
 A data-type checker for DeepSeek Harness: it reads one canteen retention ledger (one row per retained sample), runs the bundled versioned rule pack (CF-001..CF-010), and never writes to the material — no network call, no model call.
